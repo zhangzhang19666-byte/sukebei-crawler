@@ -34,15 +34,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install curl_cffi beautifulsoup4 requests
 
-      - name: Run Crawler (1000 IDs batch)
+      - name: Run Crawler (1100 IDs batch)
         env:
           PROXY_URL: ${{ secrets.PROXY_URL }}
         run: |
           echo "Starting crawler batch..."
           if [ -n "$PROXY_URL" ]; then
-            python aws_nyaa_crawler.py --workers 5 --batch-size 1000 --proxy "$PROXY_URL"
+            python aws_nyaa_crawler.py --workers 5 --batch-size 1100 --proxy "$PROXY_URL"
           else
-            python aws_nyaa_crawler.py --workers 5 --batch-size 1000
+            python aws_nyaa_crawler.py --workers 5 --batch-size 1100
           fi
 
       - name: Commit and Push changes
