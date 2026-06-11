@@ -132,7 +132,9 @@ async def run_crawler(start_id, end_id, workers, min_delay, max_delay, proxy, ou
     found_count = 0
     
     lock = asyncio.Lock()
-    fh = open(output_file, "a", encoding="utf-8")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    output_file = f"nyaa_{ts}.jsonl"
+    fh = open(output_file, "w", encoding="utf-8")  # "w" 不是 "a"
 
     async def worker_task(session):
         nonlocal current_count, found_count, processed_count
